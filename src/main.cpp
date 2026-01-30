@@ -47,6 +47,7 @@ bool checkHealth(int &health) {
 }
 
 int main() {
+    srand(time(0));
 	int playerHP = 100;
 	int monsterHP = 100;
 
@@ -69,7 +70,7 @@ int main() {
             break;
         case 3:
             playerHP = 0;
-            break;
+            break; //if you quit the game you die in game life.
         default:
             break;
         }
@@ -82,10 +83,10 @@ int main() {
     }
 
     if (!checkHealth(monsterHP)) {
-        cout << endl << "monster dead gg" << endl;
+        cout << endl << "You have defeated the monster! Congratulations. You depart the dungeon in glory." << endl;
     }
     else if (!checkHealth(playerHP)) {
-        cout << endl << "you died gg" << endl;
+        cout << endl << "You leave the dungeon in an untimely and unfortunate manner. Because you died. Miserably." << endl;
     }
     else {
         cout << "You have clipped into the dungeon walls.";
