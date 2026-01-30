@@ -1,12 +1,12 @@
 // Please have more than one function. At least one of them passing a value by reference :)
 #include <iostream>
 #include <ctime>
-//include many things
+
 using namespace std;
 
 int displayMenu(int playerHealth, int monsterHealth) {//no pointers because no change
     int playerMove = 7;
-    cout << "Player HP: " << playerHealth << endl;
+    cout << endl << "Player HP: " << playerHealth << endl;
     cout << "Monster HP: " << monsterHealth << endl;
     cout << endl;
     cout << "What is your next move?\n";
@@ -54,11 +54,41 @@ int main() {
         int choice = 0;
         while (choice == 0) {
             choice = displayMenu(playerHP, monsterHP);
-            if (4 < choice || choice < 0)
+            if (3 < choice || choice < 1) {
+                cout << "Invalid choice" << endl;
                 choice = 0;
+            }
         }
-        playerAttack(monsterHP);
+
+        switch (choice) {
+        case 1:
+            playerAttack(monsterHP);
+            break;
+        case 2:
+            playerHeal(playerHP);
+            break;
+        case 3:
+            playerHP = 0;
+            break;
+        default:
+            break;
+        }
+
+        if (!checkHealth(monsterHP) || !checkHealth(playerHP)) {
+            break;
+        }
+
         monsterAttack(playerHP);
+    }
+
+    if (!checkHealth(monsterHP)) {
+        cout << endl << "monster dead gg" << endl;
+    }
+    else if (!checkHealth(playerHP)) {
+        cout << endl << "you died gg" << endl;
+    }
+    else {
+        cout << "You have clipped into the dungeon walls.";
     }
 
     return 0;
